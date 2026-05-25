@@ -24,9 +24,16 @@ def obtener_info_sistema():
     """ 
 Usa la biblioteca 'sys' para validar el entorno de ejecución. 
 Requisitos: Realizar 3 llamadas distintas a la biblioteca 'sys'. 
-""" 
-# TODO: Implementar lógica 
-pass 
+    """ 
+    plataforma = sys.platform
+    version = sys.version
+    ruta = sys.executable
+
+    print("--- INFO DEL SISTEMA ---")
+    print("Plataforma:", plataforma)
+    print("Version de Python:", version)
+    print("Ruta del ejecutable:", ruta)
+
 def simular_metricas_entrenamiento(cantidad_epochs): 
     """ 
 Usa las bibliotecas 'random' y 'datetime' para simular los datos de entrenamiento. 
