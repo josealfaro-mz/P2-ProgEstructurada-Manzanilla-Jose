@@ -109,8 +109,30 @@ def calcular_rmse(predicciones, reales):
 # ========================================== 
 def main():
     print("=== INICIANDO SIMULADOR DE AGENTES DE IA ===")
-# TODO: Invocar las funciones, orquestar el flujo y mostrar reportes ordenados. 
+    # TODO: Invocar las funciones, orquestar el flujo y mostrar reportes ordenados. 
+    
     obtener_info_sistema()
+
+    lista_loss, lista_latencia = simular_metricas_entrenamiento(MAX_EPOCHS)
+
+    media_loss = analizar_rendimiento(lista_loss, lista_latencia)
+
+    predicciones = lista_loss
+    reales = []
+    i = 0
+    while i < len(lista_loss):
+        valor_real = lista_loss[i] + random.uniform(-0.05, 0.05)
+        reales.append(valor_real)
+        i = i + 1
+
+    rmse = calcular_rmse(predicciones, reales)
+
+    print("\n--- REVISION FINAL ---")
+    if media_loss >= UMBRAL_ERROR_CRITICO:
+        print("ERROR CRITICO: El loss promedio supera el umbral permitido.")
+        sys.exit(1)
+    else:
+        print("Entrenamiento completado sin errores criticos.")
 
 if __name__ == "__main__": 
     main()
