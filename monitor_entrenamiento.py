@@ -67,20 +67,43 @@ Requisitos: 3 llamadas a 'random' y 3 llamadas a 'datetime'.
     print("Duracion total:", diferencia)
 
     return lista_loss, lista_latencia
-def analizar_rendimiento(lista_loss): 
+
+def analizar_rendimiento(lista_loss, lista_latencia): 
     """ 
-Usa la biblioteca 'statistics' para analizar el comportamiento del entrenamiento. 
-Requisitos: 3 llamadas distintas a la biblioteca 'statistics'. 
-""" 
-# TODO: Implementar lógica 
-pass 
+    Usa la biblioteca 'statistics' para analizar el comportamiento del entrenamiento. 
+    Requisitos: 3 llamadas distintas a la biblioteca 'statistics'. 
+    """ 
+    media = statistics.mean(lista_loss)
+    desviacion = statistics.stdev(lista_loss)
+    mediana_latencia = statistics.median(lista_latencia)
+
+    print("\n--- ANALISIS DE RENDIMIENTO ---")
+    print("Media de loss:", round(media, 4))
+    print("Desviacion estandar:", round(desviacion, 4))
+    print("Mediana de latencia:", round(mediana_latencia, 4), "seg")
+
+    return media
+
 def calcular_rmse(predicciones, reales): 
     """ 
-Usa la biblioteca 'math' para calcular el Root Mean Squared Error (RMSE). 
-Requisitos: 3 llamadas distintas a la biblioteca 'math'. 
-""" 
-# TODO: Implementar lógica 
-pass 
+    Usa la biblioteca 'math' para calcular el Root Mean Squared Error (RMSE). 
+    Requisitos: 3 llamadas distintas a la biblioteca 'math'. 
+    """ 
+    suma = 0
+    i = 0
+    while i < len(predicciones):
+        diferencia = predicciones[i] - reales[i]
+        suma = suma + math.pow(diferencia, 2)
+        i = i + 1
+
+    promedio = suma / len(predicciones)
+    rmse = math.sqrt(promedio)
+    rmse_redondeado = math.fabs(rmse)
+
+    print("\n--- CALCULO DE RMSE ---")
+    print("RMSE:", round(rmse_redondeado, 4))
+
+    return rmse_redondeado
 # ========================================== 
 # 4. PROGRAMA PRINCIPAL (PUNTO DE ENTRADA) 
 # ========================================== 
@@ -88,6 +111,6 @@ def main():
     print("=== INICIANDO SIMULADOR DE AGENTES DE IA ===")
 # TODO: Invocar las funciones, orquestar el flujo y mostrar reportes ordenados. 
     obtener_info_sistema()
-    
+
 if __name__ == "__main__": 
     main()
