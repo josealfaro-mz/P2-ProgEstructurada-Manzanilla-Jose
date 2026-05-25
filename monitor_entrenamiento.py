@@ -39,8 +39,7 @@ def simular_metricas_entrenamiento(cantidad_epochs):
 Usa las bibliotecas 'random' y 'datetime' para simular los datos de entrenamiento. 
 Requisitos: 3 llamadas a 'random' y 3 llamadas a 'datetime'. 
 """ 
-# TODO: Implementar lógica 
-pass 
+    
 def analizar_rendimiento(lista_loss): 
     """ 
 Usa la biblioteca 'statistics' para analizar el comportamiento del entrenamiento. 
@@ -58,6 +57,10 @@ pass
 # ========================================== 
 # 4. PROGRAMA PRINCIPAL (PUNTO DE ENTRADA) 
 # ========================================== 
-if __name__ == "__main__": 
-    print("=== INICIANDO SIMULADOR DE AGENTES DE IA ===") 
+def main():
+    print("=== INICIANDO SIMULADOR DE AGENTES DE IA ===")
 # TODO: Invocar las funciones, orquestar el flujo y mostrar reportes ordenados. 
+    obtener_info_sistema()
+
+if __name__ == "__main__": 
+    main()
