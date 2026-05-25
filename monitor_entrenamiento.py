@@ -39,7 +39,34 @@ def simular_metricas_entrenamiento(cantidad_epochs):
 Usa las bibliotecas 'random' y 'datetime' para simular los datos de entrenamiento. 
 Requisitos: 3 llamadas a 'random' y 3 llamadas a 'datetime'. 
 """ 
-    
+    lista_loss = []
+    lista_latencia = []
+    eventos = ["Epoch exitoso", "Gradiente inestable", "Actualizacion de pesos"]
+
+    inicio = datetime.datetime.now()
+    fecha_formateada = inicio.strftime("%d/%m/%Y %H:%M:%S")
+    print("\n--- SIMULACION DE ENTRENAMIENTO ---")
+    print("Inicio:", fecha_formateada)
+
+    contador = 0
+    while contador < cantidad_epochs:
+        loss = random.uniform(0.1, 1.0)
+        probabilidad = random.random()
+        evento = random.choice(eventos)
+
+        latencia = random.uniform(0.5, 3.0)
+        lista_loss.append(loss)
+        lista_latencia.append(latencia)
+
+        print("Epoch", contador + 1, "| Loss:", round(loss, 4), "| Evento:", evento, "| Prob exito:", round(probabilidad, 2))
+        contador = contador + 1
+
+    fin = datetime.datetime.now()
+    diferencia = fin - inicio
+    print("Fin:", fin.strftime("%d/%m/%Y %H:%M:%S"))
+    print("Duracion total:", diferencia)
+
+    return lista_loss, lista_latencia
 def analizar_rendimiento(lista_loss): 
     """ 
 Usa la biblioteca 'statistics' para analizar el comportamiento del entrenamiento. 
@@ -61,6 +88,6 @@ def main():
     print("=== INICIANDO SIMULADOR DE AGENTES DE IA ===")
 # TODO: Invocar las funciones, orquestar el flujo y mostrar reportes ordenados. 
     obtener_info_sistema()
-
+    
 if __name__ == "__main__": 
     main()
