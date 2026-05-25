@@ -110,7 +110,7 @@ def calcular_rmse(predicciones, reales):
 def main():
     print("=== INICIANDO SIMULADOR DE AGENTES DE IA ===")
     # TODO: Invocar las funciones, orquestar el flujo y mostrar reportes ordenados. 
-    
+
     obtener_info_sistema()
 
     lista_loss, lista_latencia = simular_metricas_entrenamiento(MAX_EPOCHS)
@@ -136,3 +136,40 @@ def main():
 
 if __name__ == "__main__": 
     main()
+
+"""
+    CUESTIONARIO DE ANALISIS DE BIBLIOTECAS
+
+    1. Uso de Objetos y Métodos:
+        Al usar datetime.datetime.now(), 'datetime' es el nombre del modulo que
+        importamos, el segundo 'datetime' es la clase que contiene los datos de
+        fecha y hora, y 'now()' es el metodo que llamamos para obtener la fecha
+        actual. Se relaciona con biblioteca externa porque nosotros no escribimos
+        ese codigo, lo reutilizamos desde la biblioteca que Python ya tiene instalada.
+
+    2. Diferenciación Técnica:
+        Cuando usamos 'import math' tenemos que escribir el nombre del modulo cada
+        vez que usamos una funcion, por ejemplo math.sqrt(). Si usaramos
+        'from math import sqrt' podriamos llamar solo sqrt() sin el prefijo. En este
+        codigo usamos 'import math' para que quede claro de donde viene cada funcion.
+
+    3. Flujo y Lógica:
+        Primero la funcion simular_metricas_entrenamiento genera la lista de loss con
+        valores aleatorios. Esa lista se pasa a analizar_rendimiento para sacar la
+        media y la desviacion. Tambien se usa esa lista como predicciones en
+        calcular_rmse, donde se compara contra valores reales simulados con una
+        pequeña variacion aleatoria, y se calcula el error final.
+
+    4. Mapeo de Tipos de Datos:
+        Use listas para guardar los valores de loss y de latencia de cada epoch.
+        Elegi listas porque necesitaba guardar multiples valores en orden para despues
+        pasarlos a las funciones de statistics. Si hubiera usado variables simples
+        solo podria guardar un valor a la vez y perderia la informacion de todos los epochs.
+
+    5. Autoevaluación de Abstracción:
+        No tuve que programar la formula de la desviacion estandar. Solo llame
+        statistics.stdev() y la biblioteca hizo todo el calculo internamente. Esto es
+        Abstraccion porque la biblioteca nos oculta la complejidad de la formula y
+        nosotros solo necesitamos saber que funcion llamar y que datos darle, sin
+        preocuparnos por como funciona por dentro.
+"""
